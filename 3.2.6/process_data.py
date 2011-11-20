@@ -31,10 +31,24 @@ def data2():
                 x_val = (1000 * R + R0) ** 2
                 print >>writer, x_val / 10 ** 6, 1 / Theta ** 2
 
+def data3():
+    div = 1. / 15
+    R0 = 280
+
+    with open("3_raw.data") as reader:
+        with open("3.data", "w") as writer:
+            for line in reader:
+                line = line.strip()
+                if not line: continue
+                R, x = map(float, line.split())
+                x_val = (1000 * R + R0) ** -1
+                print >>writer, x_val, x
+
 
 def main():
     data1()
     data2()
+    data3()
 
 if __name__ == "__main__":
     main()
