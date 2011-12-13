@@ -3,8 +3,8 @@
 set encoding utf8
 set terminal pngcairo enhanced font "Verdana, 10"
 set output "1graph.png"
-set xlabel "x, мм"
-set ylabel "I, А"
+set xlabel "T, C"
+set ylabel "({/Symbol t}^2 - {/Symbol t}_0^2)^{-1}, мкс^{-2}"
 # set yrange [0:0.0000002]
 set nokey
 set style line 1 lt rgb "#000000" pt 2 lw 2
@@ -12,7 +12,7 @@ set style line 2 lt rgb "#f73624" pt 2 lw 1
 # set style data points
 set grid
 y(x) = k*x+b
-fit y(x) "1.data" using 1:2 via k, b
+fit y(x) "1.data" using 1:2 every ::3 via k, b
 plot \
     y(x) title "line fit" ls 2, \
     "1.data" u 1:2 t "data" w p ls 1 \

@@ -3,7 +3,7 @@
 set encoding utf8
 set terminal pngcairo enhanced font "Verdana, 10"
 set output "3graph.png"
-set xlabel "(R + R_0)^{-1}, Ом^{-1} * 10^{-4}"
+set xlabel "(R + R_0)^{-1}, Ом^{-1}"
 set ylabel "l_{max}, см"
 set nokey
 set style line 1 lt rgb "#000000" pt 2 lw 2

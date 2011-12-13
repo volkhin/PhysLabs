@@ -1,0 +1,30 @@
+#!/usr/bin/gnuplot -persist
+
+set encoding utf8
+set terminal pngcairo enhanced font "Verdana, 10"
+set output "1graph.png"
+set xlabel "x, дел"
+set ylabel "H, А/м"
+# set yrange [0:0.0000002]
+# set nokey
+set key left top
+set style line 1 lt rgb "#000000" pt 2 lw 2
+set style line 2 lt rgb "#f73624" pt 2 lw 1
+# set style data points
+set grid
+y1(x) = k1*x+b1
+fit y1(x) "1.data" using 1:2 via k1, b1
+y2(x) = k2*x+b2
+fit y2(x) "1.data" using 1:3 via k2, b2
+y3(x) = k3*x+b3
+fit y3(x) "1.data" using 1:4 via k3, b3
+plot \
+    "1.data" u 1:4 t "феррит" w p ls 5, \
+    "1.data" u 1:3 t "Fe-Ni" w p ls 9, \
+    "1.data" u 1:2 t "Fe-Si" w p ls 1, \
+    y1(x) title "line fit" ls 2, \
+    y2(x) title "line fit" ls 2, \
+    y3(x) title "line fit" ls 2
+
+# print "k: ", k
+# print "b: ", b
